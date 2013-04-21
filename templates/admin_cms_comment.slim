@@ -1,0 +1,26 @@
+table.table
+	thead
+		th : a href="#{_url('/admin/cms_comment', :order => 'ccid')}" = L[:ccid]
+		th : a href="#{_url('/admin/cms_comment', :order => 'cpid')}" = L[:cpid]
+		th : a href="#{_url('/admin/cms_comment', :order => 'uid')}" = L[:uid]
+		th : a href="#{_url('/admin/cms_comment', :order => 'body')}" = L[:body]
+		th : a href="#{_url('/admin/cms_comment', :order => 'created')}" = L[:created]
+		th
+	tbody
+		- @cms_comment.each do | row |
+			tr
+				td = row[:ccid]
+				td = row[:cpid]
+				td = row[:uid]
+				td = row[:body]
+				td = row[:created]
+
+				td
+					span.edit : a href="/admin/cms_comment/edit/#{row[:ccid]}" = L[:fix]
+					span.delete : a href="/admin/cms_comment/rm/#{row[:ccid]}" = L[:del]
+
+- if @page_count > 1
+	p.page_bar
+		- for i in 1..@page_count
+			- page_focus = i == @page_curr ? "page_focus" : ""
+			span : a class="#{page_focus}" href="#{_url('/admin/cms_comment', :page_curr => i)}" = i

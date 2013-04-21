@@ -1,0 +1,9 @@
+div
+	form action="/cms/form" method="post"
+		ul
+			li : input.button type="submit" value="#{L[:done]}"
+			li : input type="text" name="title"
+			li
+				textarea name="body"
+				input type="hidden" name="ctid" value="#{params[:ctid]}"
+				input type="hidden" name="cms_route_path" value="#{@cms_route_path}"

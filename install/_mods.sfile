@@ -1,0 +1,10 @@
+name=cms
+order=9
+status=1
+email=coolesting@gmail.com
+author=Bruce deng coolesting
+created=2013-04-06 18:29:19 -0700
+version=0.0.1
+tid=1
+dependon=
+description=a cms module

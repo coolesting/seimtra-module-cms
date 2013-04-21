@@ -1,0 +1,21 @@
+div
+	.top_menu
+		a href="#{@cms_route_path}/form?ctid=#{params[:id]}" : input.button type="button" value="#{L[:create]}" 
+
+	.nav
+		- ftype = _kv(:cms_type, :ctid, :name)
+		label = ftype[params[:ctid].to_i]
+
+	.table
+		- if @res
+			table
+				tr
+					th = L[:title]
+					th = L[:user]
+					th = L[:changed]
+				- user = _kv(:_user, :uid, :name)
+				- @res.each do | row |
+					tr
+						td.title : a href="#{@cms_route_path}/post/#{row[:ctid]}/#{row[:cpid]}" = row[:title]
+						td.user = user[row[:uid]]
+						td.time = row[:changed].strftime("%Y-%m-%d, %H:%M:%S")

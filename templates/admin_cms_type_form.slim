@@ -1,0 +1,12 @@
+form action="#{request.path}" method="post" id="form"
+	ul.ul
+		
+		li : label = L[:name]
+		li : input type="text" name="name" required="required" value="#{@fields[:name]}"
+		
+		li : label = L[:order]
+		li : input type="text" name="order" required="required" value="#{@fields[:order]}"
+		
+		li : label = L[:description]
+		li : input type="text" name="description" value="#{@fields[:description]}"
+		

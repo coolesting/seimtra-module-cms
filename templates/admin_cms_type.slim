@@ -1,0 +1,24 @@
+table.table
+	thead
+		th : a href="#{_url('/admin/cms_type', :order => 'ctid')}" = L[:ctid]
+		th : a href="#{_url('/admin/cms_type', :order => 'name')}" = L[:name]
+		th : a href="#{_url('/admin/cms_type', :order => 'order')}" = L[:order]
+		th : a href="#{_url('/admin/cms_type', :order => 'description')}" = L[:description]
+		th
+	tbody
+		- @cms_type.each do | row |
+			tr
+				td = row[:ctid]
+				td = row[:name]
+				td = row[:order]
+				td = row[:description]
+
+				td
+					span.edit : a href="/admin/cms_type/edit/#{row[:ctid]}" = L[:fix]
+					span.delete : a href="/admin/cms_type/rm/#{row[:ctid]}" = L[:del]
+
+- if @page_count > 1
+	p.page_bar
+		- for i in 1..@page_count
+			- page_focus = i == @page_curr ? "page_focus" : ""
+			span : a class="#{page_focus}" href="#{_url('/admin/cms_type', :page_curr => i)}" = i

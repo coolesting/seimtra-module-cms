@@ -1,0 +1,22 @@
+name=cms
+type=admin
+link=/admin/cms
+description=a cms module
+
+name=type
+menu_name=cms
+type=admin
+link=/admin/cms_type
+description=the type of post
+
+name=post
+menu_name=cms
+type=admin
+link=/admin/cms_post
+description=the details of post
+
+name=comment
+menu_name=cms
+type=admin
+link=/admin/cms_comment
+description=the comment of post

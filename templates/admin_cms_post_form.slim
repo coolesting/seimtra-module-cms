@@ -1,0 +1,26 @@
+form action="#{request.path}" method="post" id="form"
+	ul.ul
+		
+		li : label = L[:name]
+		- cms_types = _kv(:cms_type, :ctid, :name)
+		li : select name="ctid" required="required"
+			- cms_types.each do | k,v |
+				- selected = @fields[:ctid] == k ? "selected" : ""
+				option selected="#{selected}" value="#{k}" = v
+		
+		li : label = L[:uid]
+		li : input type="text" name="uid" required="required" value="#{@fields[:uid]}"
+		
+		li : label = L[:status]
+		li : input type="number" name="status" required="required" value="#{@fields[:status]}" min="0" max="99999"
+		
+		li : label = L[:comment_count]
+		li : input type="text" name="comment_count" required="required" value="#{@fields[:comment_count]}"
+
+		li : label = L[:title]
+		li : input type="text" name="title" required="required" value="#{@fields[:title]}"
+		
+		li : label = L[:body]
+		li : textarea name="body" required="required" = @fields[:body]
+		
+		
