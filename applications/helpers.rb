@@ -5,6 +5,7 @@ helpers do
 		@cms_vars[:css] = '/cms/css/cms.css' unless @cms_vars.include? :css
 		if @qs.include?(:opt)
 			if @qs[:opt] == 'form'
+				_login?
 				cms_form
 			elsif @qs[:opt] == 'post'
 				cms_get_post
