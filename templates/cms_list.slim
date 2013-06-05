@@ -1,10 +1,11 @@
-div
+#cms
 	.top_menu
-		a href="#{@cms_route_path}/form?ctid=#{params[:id]}" : input.button type="button" value="#{L[:create]}" 
+		a href="#{_url2(request.path, :opt => 'form')}"
+			input.button type="button" value="#{L[:create]}" 
 
 	.nav
-		- ftype = _kv(:cms_type, :ctid, :name)
-		label = ftype[params[:ctid].to_i]
+		- types = _kv(:cms_type, :ctid, :name)
+		label = types[@qs[:ctid].to_i]
 
 	.table
 		- if @res
@@ -16,6 +17,9 @@ div
 				- user = _kv(:_user, :uid, :name)
 				- @res.each do | row |
 					tr
-						td.title : a href="#{@cms_route_path}/post/#{row[:ctid]}/#{row[:cpid]}" = row[:title]
+						td.title : a href="#{_url2(request.path, :opt => 'post', :ctid => row[:ctid], :cpid => row[:cpid])}" = row[:title]
 						td.user = user[row[:uid]]
-						td.time = row[:changed].strftime("%Y-%m-%d, %H:%M:%S")
+						td.time = row[:changed].strftime("%Y-%m-%d, %H:%M")
+
+
+link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'

@@ -1,9 +1,12 @@
-div
-	form action="/cms/form" method="post"
-		ul
-			li : input.button type="submit" value="#{L[:done]}"
-			li : input type="text" name="title"
-			li
-				textarea name="body"
-				input type="hidden" name="ctid" value="#{params[:ctid]}"
-				input type="hidden" name="cms_route_path" value="#{@cms_route_path}"
+#cms
+	.form
+		form action="#{_url2('/cms/form')}" method="post"
+			p
+				input.button type="submit" value="#{L[:done]}"
+				a href="#{_url(request.path)}"
+					input.button type="button" value="#{L[:return]}"
+
+			p : input.text type="text" name="title" placeholder="#{L[:title]}"
+			p : textarea cols='45' rows='10' name="body" placeholder="#{L[:body]}"
+
+link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'

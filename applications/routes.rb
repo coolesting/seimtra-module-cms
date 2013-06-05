@@ -19,13 +19,14 @@ post '/cms/form' do
 	@fields[:created] = Time.now
 	@fields[:changed] = Time.now
 	DB[:cms_post].insert(@fields)
-	redirect params[:cms_route_path] + '/list/' + @fields[:ctid].to_s
+	if @qs[:come_from]
+		redirect @qs[:come_from]
+	else
+		redirect back
+	end
 end
 
 before '/cms/*' do
 	_login?
 end
 
-def cms_allow_comment cpid
-	_throw L[:'the comment is closed'] unless DB[:cms_post].filter(:cpid => cpid).get(:status) == 0
-end

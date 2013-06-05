@@ -1,0 +1,65 @@
+#cms .top_menu, .nav, .comment, .edit, .table, .body, .comment {
+	margin-bottom: 10px;
+}
+#cms .button {
+	width: 100px;
+	margin-right: 10px;
+}
+
+/** table **/
+#cms .nav a, #cms .table a {
+	color: black;
+	text-decoration: none;
+}
+#cms .nav a, #cms .table a:hover {
+	color: #494545;
+	text-decoration: underline;
+}
+#cms .table th, #cms .table td {
+	padding: 3px 5px;
+	border: 1px solid #ADBDC0;
+}
+#cms .table .title {
+	width: 60%;
+}
+#cms .table .user {
+	text-align: center;
+	width: 20%;
+}
+#cms .table .time {
+	width: 20%;
+}
+
+/** form **/
+#cms .form p {
+	margin-bottom: 10px;
+}
+#cms .form .text {
+	width: 385px;
+	border: 1px solid #ADBDC0;
+}
+#cms .form textarea {
+	width: 380px;
+	border: 1px solid #ADBDC0;
+}
+
+/** body **/
+#cms .body {
+	min-height: 200px;
+	padding: 5px;
+	border: 1px solid #ADBDC0;
+}
+#cms .comment .title {
+	height: 40px;
+	margin-top: 20px;
+}
+#cms .comment .comment_body {
+	min-height: 40px;
+	margin-bottom: 5px;
+}
+#cms .comment textarea {
+	border: 1px solid #ADBDC0;
+	margin: 2px;
+	width: 325px;
+	height: 50px; 
+}

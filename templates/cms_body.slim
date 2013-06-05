@@ -1,37 +1,33 @@
-div
+#cms
 	.top_menu
-		a href="#{@cms_route_path}/form?ctid=#{params[:id]}" : input.button type="button" value="#{L[:create]}" 
+		a href="#{_url2(request.path, :opt => 'form')}" : input.button type="button" value="#{L[:create]}" 
 
 	- if @res
 		.nav
-			- ftype = _kv(:cms_type, :ctid, :name)
-			label : a href="#{@cms_route_path}/post/#{@res[:ctid]}" = ftype[@res[:ctid].to_i]
-			|  >> 
-			label = @res[:title]
+			- types = _kv(:cms_type, :ctid, :name)
+			label : a href="#{_url(request.path, :ctid => @res[:ctid])}" = types[@res[:ctid].to_i]
+			label &nbsp; >>  #{@res[:title]}
 
 		.body
 			- user = _kv(:_user, :uid, :name)
-			ul
-				li : h2 = @res[:title]
-				li
-					label = L[:'Write by']
-					label = user[@res[:uid]]
-					| , 
-					label = L[:'at']
-					label = @res[:created].strftime("%Y-%m-%d, %H:%M:%S")
-				li : p = @res[:body]
+			p : h1 = @res[:title]
+			p #{@res[:created].strftime("%Y-%m-%d, %H:%M")} , #{user[@res[:uid]]}
+			p = @res[:body]
 
-		.list
-			- if @res[:status] == 0
+		.comment
+			- if @res[:status] == 0 and _user[:uid] > 0
+				h2.title = L[:comment]
 				- comments = cms_get_comment(@res[:cpid])
 				- if comments
 					- comments.each do | comment |
-						div
-							p = comment[:created].strftime("%Y-%m-%d, %H:%M:%S")
+						.comment_body
+							p = comment[:created].strftime("%Y-%m-%d, %H:%M")
 							p = comment[:body]
 
 				.comment_form
 					form action="/cms/comment/#{@res[:cpid]}" method="post"
 						textarea name="body"
+						.clear
 						input type="submit" value="#{L[:submit]}"
 
+link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'
