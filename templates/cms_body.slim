@@ -15,15 +15,15 @@
 			p = @res[:body]
 
 		.comment
-			- if @res[:status] == 0 and _user[:uid] > 0
-				h2.title = L[:comment]
-				- comments = cms_get_comment(@res[:cpid])
-				- if comments
-					- comments.each do | comment |
-						.comment_body
-							p = comment[:created].strftime("%Y-%m-%d, %H:%M")
-							p = comment[:body]
+			h2.title = L[:comment]
+			- comments = cms_get_comment(@res[:cpid])
+			- if comments
+				- comments.each do | comment |
+					.comment_body
+						p = comment[:created].strftime("%Y-%m-%d, %H:%M")
+						p = comment[:body]
 
+			- if @res[:status] == 0 and _user[:uid] > 0
 				.comment_form
 					form action="/cms/comment/#{@res[:cpid]}" method="post"
 						textarea name="body"

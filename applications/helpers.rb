@@ -5,7 +5,6 @@ helpers do
 		@cms_vars[:css] = '/cms/css/cms.css' unless @cms_vars.include? :css
 		if @qs.include?(:opt)
 			if @qs[:opt] == 'form'
-				_login?
 				cms_form
 			elsif @qs[:opt] == 'post'
 				cms_get_post
@@ -19,14 +18,14 @@ helpers do
 
 	def cms_get_list ctid = 1
 		ctid = @qs.include?(:ctid) ? @qs[:ctid] : ctid
-		ds = DB[:cms_post].filter(:ctid => ctid.to_i).all
+		ds = DB[:cms_post].filter(:ctid => ctid.to_i).reverse(:cpid).all
 		@res = ds ? ds : {}
 		_tpl :cms_list
 	end
 
 	def cms_get_comment cpid = 1
 		cpid = @qs.include?(:cpid) ? @qs[:cpid] : cpid
-		DB[:cms_comment].filter(:cpid => cpid.to_i).all
+		DB[:cms_comment].filter(:cpid => cpid.to_i).reverse(:ccid).all
 	end
 
 	def cms_get_post cpid = 1
@@ -38,6 +37,7 @@ helpers do
 
 	def cms_form
 		@qs[:come_from] = request.referer unless @qs.include?(:come_from)
+ 		_login?
 		_tpl :cms_form
 	end
 
