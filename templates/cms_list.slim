@@ -22,4 +22,10 @@
 						td.time = row[:changed].strftime("%Y-%m-%d, %H:%M")
 
 
+	- if @page_count > 1
+		p.page_bar
+			- for i in 1..@page_count
+				- page_focus = i == @page_curr ? "page_focus" : ""
+				a class="#{page_focus}" href="#{_url2(request.path, :page_curr => i)}" = i
+
 link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'

@@ -29,6 +29,15 @@
 #cms .table .time {
 	width: 20%;
 }
+#cms .page_bar a {
+	color: black;
+	padding: 3px;
+	margin: 3px;
+	text-decoration: none;
+}
+#cms .page_focus {
+	background-color: #ADBDC0;
+}
 
 /** form **/
 #cms .form p {

@@ -18,8 +18,11 @@ helpers do
 
 	def cms_get_list ctid = 1
 		ctid = @qs.include?(:ctid) ? @qs[:ctid] : ctid
-		ds = DB[:cms_post].filter(:ctid => ctid.to_i).reverse(:cpid).all
-		@res = ds ? ds : {}
+		ds = DB[:cms_post].filter(:ctid => ctid.to_i).reverse(:cpid)
+
+		Sequel.extension :pagination
+		@res = ds.paginate(@page_curr, @page_size, ds.count)
+		@page_count = @res.page_count
 		_tpl :cms_list
 	end
 
