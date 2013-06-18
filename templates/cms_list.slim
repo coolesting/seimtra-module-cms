@@ -12,8 +12,8 @@
 			table
 				tr
 					th = L[:title]
-					th = L[:user]
-					th = L[:last_changed]
+					th = L[:author]
+					th = L[:reply]
 					th = L[:comment_count]
 					th = L[:changed]
 				- user = _kv(:_user, :uid, :name)
@@ -32,4 +32,4 @@
 				- page_focus = i == @page_curr ? "page_focus" : ""
 				a class="#{page_focus}" href="#{_url2(request.path, :page_curr => i)}" = i
 
-link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'
+link rel='stylesheet' type='text/css' href='#{_assets("/cms/css/cms.css")}'

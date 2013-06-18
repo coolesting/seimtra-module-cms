@@ -1,10 +1,6 @@
 helpers do
 
 	def cms_setup options = {}
-		@cms_vars = options
-		@cms_vars[:css] = '/cms/css/cms.css' unless @cms_vars.include? :css
-		@cms_vars[:view_form] = 'forum'
-
 		if @qs.include?(:opt)
 			if @qs[:opt] == 'form'
 				cms_form
@@ -29,7 +25,6 @@ helpers do
 	end
 
 	def cms_get_post cpid = 1
-		@page_size = 20
 		cpid = @qs.include?(:cpid) ? @qs[:cpid] : cpid
 		@res = {}
 		tpl = "cms_body_page"
@@ -44,8 +39,14 @@ helpers do
 	end
 
 	def cms_get_comment cpid = 1
+		@page_size = 9
 		cpid = @qs.include?(:cpid) ? @qs[:cpid] : cpid
-		DB[:cms_comment].filter(:cpid => cpid.to_i).reverse(:ccid).all
+		ds = DB[:cms_comment].filter(:cpid => cpid.to_i)
+
+		Sequel.extension :pagination
+		res = ds.paginate(@page_curr, @page_size, ds.count)
+		@page_count = res.page_count
+		res = res ? res : {}
 	end
 
 	def cms_form

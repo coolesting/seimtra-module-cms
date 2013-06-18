@@ -18,10 +18,16 @@
 
 			- comments = cms_get_comment(@res[:cpid])
 			- if comments
-				- comments.each do | comment |
+				- comments.all.each do | comment |
 					.post
 						p #{comment[:created].strftime("%Y-%m-%d, %H:%M")} , #{user[@res[:uid]]}
 						p = comment[:body]
+
+				- if @page_count > 1
+					p.page_bar
+						- for i in 1..@page_count
+							- page_focus = i == @page_curr ? "page_focus" : ""
+							a class="#{page_focus}" href="#{_url2(request.path, :page_curr => i)}" = i
 
 			- if @res[:status] == 0 and _user[:uid] > 0
 				.comment_form
@@ -29,4 +35,4 @@
 						p : textarea name="body"
 						p : input.button type="submit" value="#{L[:submit]}"
 
-link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'
+link rel='stylesheet' type='text/css' href='#{_assets("/cms/css/cms.css")}'

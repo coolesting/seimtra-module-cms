@@ -38,6 +38,9 @@
 	text-align: center;
 	width: 20%;
 }
+#cms .page_bar {
+	margin-bottom: 10px;
+}
 #cms .page_bar a {
 	color: black;
 	padding: 3px;
