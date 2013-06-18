@@ -1,0 +1,32 @@
+#cms
+	.top_menu
+		a href="#{_url2(request.path, :opt => 'form')}" : input.button type="button" value="#{L[:create]}" 
+
+	- if @res
+		.nav
+			- types = _kv(:cms_type, :ctid, :name)
+			label : a href="#{_url(request.path, :ctid => @res[:ctid])}" = types[@res[:ctid].to_i]
+			label &nbsp; >>  #{@res[:title]}
+
+		.body
+			- user = _kv(:_user, :uid, :name)
+			h1 = @res[:title]
+
+			.post
+				p #{@res[:created].strftime("%Y-%m-%d, %H:%M")} , #{user[@res[:uid]]}
+				p = @res[:body]
+
+			- comments = cms_get_comment(@res[:cpid])
+			- if comments
+				- comments.each do | comment |
+					.post
+						p #{comment[:created].strftime("%Y-%m-%d, %H:%M")} , #{user[@res[:uid]]}
+						p = comment[:body]
+
+			- if @res[:status] == 0 and _user[:uid] > 0
+				.comment_form
+					form action="/cms/comment/#{@res[:cpid]}" method="post"
+						p : textarea name="body"
+						p : input.button type="submit" value="#{L[:submit]}"
+
+link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'

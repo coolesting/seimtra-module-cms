@@ -1,3 +1,7 @@
 skey=post_status
 sval=public,private
 tag=cms
+
+skey=post_form
+sval=page,post
+tag=cms

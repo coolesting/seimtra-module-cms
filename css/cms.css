@@ -1,12 +1,16 @@
-#cms .top_menu, .nav, .comment, .edit, .table, .body, .comment {
+/** for all **/
+#cms .top_menu, #cms .nav, #cms .comment, #cms .edit, #cms .table, #cms .body {
 	margin-bottom: 10px;
 }
 #cms .button {
 	width: 100px;
 	margin-right: 10px;
 }
+.mb10 {
+	margin-bottom: 10px;
+}
 
-/** table **/
+/** table, list **/
 #cms .nav a, #cms .table a {
 	color: black;
 	text-decoration: none;
@@ -39,7 +43,14 @@
 	background-color: #ADBDC0;
 }
 
-/** form **/
+
+/** post for all **/
+#cms .body {
+	min-height: 200px;
+	padding: 5px;
+}
+
+/** post edit **/
 #cms .form p {
 	margin-bottom: 10px;
 }
@@ -52,8 +63,17 @@
 	border: 1px solid #ADBDC0;
 }
 
-/** body **/
-#cms .body {
+/** comment edit **/
+#cms .comment_form textarea {
+	border: 1px solid #ADBDC0;
+	margin: 2px;
+	width: 325px;
+	height: 50px; 
+}
+
+
+/** page of body **/
+#cms .body .page {
 	min-height: 200px;
 	padding: 5px;
 	border: 1px solid #ADBDC0;
@@ -66,9 +86,13 @@
 	min-height: 40px;
 	margin-bottom: 5px;
 }
-#cms .comment textarea {
+
+
+/** post of body **/
+#cms .post {
+	min-height: 100px;
+	padding: 5px;
 	border: 1px solid #ADBDC0;
-	margin: 2px;
-	width: 325px;
-	height: 50px; 
+	margin-bottom: 10px;
 }
+

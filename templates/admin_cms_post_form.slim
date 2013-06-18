@@ -10,6 +10,9 @@ form action="#{request.path}" method="post" id="form"
 		
 		li : label = L[:uid]
 		li : input type="text" name="uid" required="required" value="#{@fields[:uid]}"
+
+		li : label = L[:form_id]
+		li : input type="text" name="form_id" required="required" value="#{@fields[:form_id]}"
 		
 		li : label = L[:status]
 		li : input type="number" name="status" required="required" value="#{@fields[:status]}" min="0" max="99999"

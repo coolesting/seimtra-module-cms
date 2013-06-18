@@ -28,6 +28,5 @@ end
 
 before '/cms/*' do
 	_login?
-	@page_size = 20
 end
 

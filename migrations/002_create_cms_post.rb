@@ -5,6 +5,7 @@ Sequel.migration do
 			Integer :ctid
 			Integer :uid
 			Integer :status
+			Integer :form_id
 			String :title
 			Text :body
 			Datetime :created

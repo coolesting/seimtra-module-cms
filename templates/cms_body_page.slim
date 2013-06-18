@@ -9,10 +9,11 @@
 			label &nbsp; >>  #{@res[:title]}
 
 		.body
-			- user = _kv(:_user, :uid, :name)
-			p : h1 = @res[:title]
-			p #{@res[:created].strftime("%Y-%m-%d, %H:%M")} , #{user[@res[:uid]]}
-			p = @res[:body]
+			.page
+				- user = _kv(:_user, :uid, :name)
+				p : h1 = @res[:title]
+				p #{@res[:created].strftime("%Y-%m-%d, %H:%M")} , #{user[@res[:uid]]}
+				p = @res[:body]
 
 		.comment
 			h2.title = L[:comment]
@@ -26,8 +27,7 @@
 			- if @res[:status] == 0 and _user[:uid] > 0
 				.comment_form
 					form action="/cms/comment/#{@res[:cpid]}" method="post"
-						textarea name="body"
-						.clear
-						input type="submit" value="#{L[:submit]}"
+						p : textarea name="body"
+						p : input.button type="submit" value="#{L[:submit]}"
 
 link rel='stylesheet' type='text/css' href='#{_assets(@cms_vars[:css])}'
