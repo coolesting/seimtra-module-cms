@@ -9,7 +9,7 @@ get '/admin/cms_post' do
 
 	#search condition
 	if @rightbar.include? :search
-		@search = {:cpid => 'cpid', :ctid => 'name', :uid => 'uid', :status => 'status', :title => 'title', :body => 'body', :created => 'created', :changed => 'changed', :comment_count => 'comment_count', }
+		@search = {:cpid => 'cpid', :ctid => 'name', :uid => 'uid', :last_changed => 'last_changed', :status => 'status', :title => 'title', :body => 'body', :created => 'created', :changed => 'changed', :comment_count => 'comment_count', }
 	end
 
 	#order
@@ -89,11 +89,12 @@ helpers do
 	def cms_post_set_fields
 		
 		default_values = {
-			:ctid		=> 1,
-			:uid		=> _user[:uid],
-			:status		=> 0,
-			:title		=> '',
-			:body		=> '',
+			:ctid			=> 1,
+			:uid			=> _user[:uid],
+			:last_changed	=> _user[:uid],
+			:status			=> 0,
+			:title			=> '',
+			:body			=> '',
 			:comment_count	=> 0
 		}
 
