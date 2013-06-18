@@ -4,6 +4,7 @@ Sequel.migration do
 			primary_key :cpid
 			Integer :ctid
 			Integer :uid
+			Integer :last_changed
 			Integer :status
 			Integer :form_id
 			String :title

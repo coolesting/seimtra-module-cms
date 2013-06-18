@@ -28,9 +28,14 @@
 }
 #cms .table .user {
 	text-align: center;
-	width: 20%;
+	width: 10%;
+}
+#cms .table .comment_count {
+	text-align: center;
+	width: 10%;
 }
 #cms .table .time {
+	text-align: center;
 	width: 20%;
 }
 #cms .page_bar a {

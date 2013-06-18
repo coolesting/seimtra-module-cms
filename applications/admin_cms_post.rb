@@ -9,7 +9,7 @@ get '/admin/cms_post' do
 
 	#search condition
 	if @rightbar.include? :search
-		@search = {:cpid => 'cpid', :ctid => 'name', :uid => 'uid', :form_id => 'form_id', :status => 'status', :title => 'title', :body => 'body', :created => 'created', :changed => 'changed', :comment_count => 'comment_count', }
+		@search = {:cpid => 'cpid', :ctid => 'name', :uid => 'uid', :last_changed => 'last_changed', :form_id => 'form_id', :status => 'status', :title => 'title', :body => 'body', :created => 'created', :changed => 'changed', :comment_count => 'comment_count', }
 	end
 
 	#order
@@ -92,6 +92,7 @@ helpers do
 			:ctid			=> 1,
 			:uid			=> _user[:uid],
 			:form_id		=> 1,
+			:last_changed	=> _user[:uid],
 			:status			=> 0,
 			:title			=> '',
 			:body			=> '',

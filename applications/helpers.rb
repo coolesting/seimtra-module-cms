@@ -3,6 +3,8 @@ helpers do
 	def cms_setup options = {}
 		@cms_vars = options
 		@cms_vars[:css] = '/cms/css/cms.css' unless @cms_vars.include? :css
+		@cms_vars[:view_form] = 'forum'
+
 		if @qs.include?(:opt)
 			if @qs[:opt] == 'form'
 				cms_form
@@ -42,7 +44,6 @@ helpers do
 	end
 
 	def cms_get_comment cpid = 1
-		@page_size = 20
 		cpid = @qs.include?(:cpid) ? @qs[:cpid] : cpid
 		DB[:cms_comment].filter(:cpid => cpid.to_i).reverse(:ccid).all
 	end
@@ -51,10 +52,6 @@ helpers do
 		@qs[:come_from] = request.referer unless @qs.include?(:come_from)
  		_login?
 		_tpl :cms_edit
-	end
-
-	def cms_allow_comment cpid
-		_throw L[:'the comment is closed'] unless DB[:cms_post].filter(:cpid => cpid).get(:status) == 0
 	end
 
 end

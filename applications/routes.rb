@@ -5,11 +5,22 @@ end
 
 #submit comment
 post '/cms/comment/:cpid' do
-	cms_allow_comment params[:cpid]
+
+	#allow to comment
+	ds = DB[:cms_post].filter(:cpid => params[:cpid])
+	_throw L[:'the comment is closed'] unless ds.get(:status) == 0
+
 	cms_comment_set_fields
 	cms_comment_valid_fields
 	@fields[:created] = Time.now
 	DB[:cms_comment].insert(@fields)
+
+	#update the post status
+	update_fields = {}
+	update_fields[:last_changed] = _user[:uid]
+	update_fields[:comment_count] = ds.get(:comment_count) + 1
+	ds.update(update_fields)
+
 	redirect back
 end
 
@@ -22,7 +33,7 @@ post '/cms/form' do
 	if @qs[:come_from]
 		redirect @qs[:come_from]
 	else
-		redirect back
+		redirect request.referer
 	end
 end
 

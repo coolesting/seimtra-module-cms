@@ -74,8 +74,6 @@ post '/admin/cms_type/edit/:ctid' do
 
 	cms_type_set_fields
 	cms_type_valid_fields
-	
-	
 	DB[:cms_type].filter(:ctid => params[:ctid]).update(@fields)
 	redirect "/admin/cms_type"
 

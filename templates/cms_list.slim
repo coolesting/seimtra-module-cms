@@ -13,12 +13,16 @@
 				tr
 					th = L[:title]
 					th = L[:user]
+					th = L[:last_changed]
+					th = L[:comment_count]
 					th = L[:changed]
 				- user = _kv(:_user, :uid, :name)
 				- @res.each do | row |
 					tr
 						td.title : a href="#{_url2(request.path, :opt => 'post', :ctid => row[:ctid], :cpid => row[:cpid])}" = row[:title]
 						td.user = user[row[:uid]]
+						td.user = user[row[:last_changed]]
+						td.comment_count = row[:comment_count]
 						td.time = row[:changed].strftime("%Y-%m-%d, %H:%M")
 
 
