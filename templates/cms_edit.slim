@@ -1,9 +1,9 @@
 #cms
 	.form
-		form action="#{_url2('/cms/form')}" method="post"
+		form action="#{_url2('/cms/edit')}" method="post"
 			p
 				input.button type="submit" value="#{L[:done]}"
-				a href="#{_url(request.path)}"
+				a href="#{_url(@_path[:cms_route]) + '/list'}"
 					input.button type="button" value="#{L[:return]}"
 
 			p : input.text type="text" name="title" placeholder="#{L[:title]}"

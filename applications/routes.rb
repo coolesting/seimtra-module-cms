@@ -25,19 +25,32 @@ post '/cms/comment/:cpid' do
 end
 
 #submit post
-post '/cms/form' do
+post '/cms/edit' do
 	cms_post_set_fields
 	@fields[:created] = Time.now
 	@fields[:changed] = Time.now
 	DB[:cms_post].insert(@fields)
-	if @qs[:come_from]
-		redirect @qs[:come_from]
-	else
-		redirect request.referer
-	end
+	redirect _url2("#{@_path[:cms_route]}/list")
 end
 
-before '/cms/*' do
-	_login?
-end
-
+# ===================
+# just copy the code to your script
+# and change the route, such as '/cms/post' to '/my/path'
+# ===================
+# before do
+# 	@_path[:cms_route] = '/cms/post'
+# end
+# 
+# get '/cms/post/list' do
+# 	ctid = @qs.include?(:ctid) ? @qs[:ctid] : 1
+# 	cms_get_list ctid
+# end
+# 
+# get '/cms/post/view/:ctid/:cpid/:title' do
+# 	cms_get_post params[:cpid]
+# end
+# 
+# get '/cms/post/edit' do
+# 	cms_edit
+# end
+# 

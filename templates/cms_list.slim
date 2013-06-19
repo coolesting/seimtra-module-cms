@@ -1,6 +1,6 @@
 #cms
 	.top_menu
-		a href="#{_url2(request.path, :opt => 'form')}"
+		a href="#{_url2(@_path[:cms_route] + '/edit')}"
 			input.button type="button" value="#{L[:create]}" 
 
 	.nav
@@ -19,7 +19,7 @@
 				- user = _kv(:_user, :uid, :name)
 				- @res.each do | row |
 					tr
-						td.title : a href="#{_url2(request.path, :opt => 'post', :ctid => row[:ctid], :cpid => row[:cpid])}" = row[:title]
+						td.title : a href='#{_url(@_path[:cms_route] + "/view/#{row[:ctid]}/#{row[:cpid]}/#{row[:title]}.html")}' = row[:title]
 						td.user = user[row[:uid]]
 						td.user = user[row[:last_changed]]
 						td.comment_count = row[:comment_count]
