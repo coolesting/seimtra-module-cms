@@ -1,0 +1,12 @@
+form action="#{request.path}" method="post" id="form"
+	ul.ul
+		li : label = L[:cpid]
+		li : input type="text" name="cpid" required="required" value="#{@fields[:cpid]}"
+		
+		li : label = L[:mkey]
+		li : input type="text" name="mkey" required="required" value="#{@fields[:mkey]}"
+		
+		li : label = L[:mval]
+		li : input type="text" name="mval" required="required" value="#{@fields[:mval]}"
+		
+		

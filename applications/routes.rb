@@ -30,7 +30,7 @@ post '/cms/edit' do
 	@fields[:created] = Time.now
 	@fields[:changed] = Time.now
 	DB[:cms_post].insert(@fields)
-	redirect _url2("#{@_path[:cms_route]}/list")
+	redirect _url2("#{@_path[:cms_route]}")
 end
 
 # ===================
@@ -41,9 +41,9 @@ end
 # 	@_path[:cms_route] = '/cms/post'
 # end
 # 
-# get '/cms/post/list' do
+# get '/cms/post' do
 # 	ctid = @qs.include?(:ctid) ? @qs[:ctid] : 1
-# 	cms_get_list ctid
+# 	cms_get_posts ctid
 # end
 # 
 # get '/cms/post/view/:ctid/:cpid/:title' do

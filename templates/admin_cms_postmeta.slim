@@ -1,0 +1,24 @@
+table.table
+	thead
+		th : a href="#{_url('/admin/cms_postmeta', :order => 'cpid')}" = L[:cpid]
+		th : a href="#{_url('/admin/cms_postmeta', :order => 'mkey')}" = L[:mkey]
+		th : a href="#{_url('/admin/cms_postmeta', :order => 'mval')}" = L[:mval]
+		th : a href="#{_url('/admin/cms_postmeta', :order => 'created')}" = L[:created]
+		th
+	tbody
+		- @cms_postmeta.each do | row |
+			tr
+				td = row[:cpid]
+				td = row[:mkey]
+				td = row[:mval]
+				td = row[:created]
+
+				td
+					span.edit : a href="/admin/cms_postmeta/edit/#{row[:cpid]}" = L[:fix]
+					span.delete : a href="/admin/cms_postmeta/rm/#{row[:cpid]}" = L[:del]
+
+- if @page_count > 1
+	p.page_bar
+		- for i in 1..@page_count
+			- page_focus = i == @page_curr ? "page_focus" : ""
+			span : a class="#{page_focus}" href="#{_url2('/admin/cms_postmeta', :page_curr => i)}" = i

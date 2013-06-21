@@ -17,6 +17,14 @@
 					th = L[:comment_count]
 					th = L[:created]
 				- user = _kv(:_user, :uid, :name)
+				- @top.each do | row |
+					tr
+						td.title.totop : a href='#{_url(@_path[:cms_route] + "/view/#{row[:ctid]}/#{row[:cpid]}/#{row[:title]}.html")}' -- #{row[:title]}
+						td.user = user[row[:uid]]
+						td.user = user[row[:last_changed]]
+						td.comment_count = row[:comment_count]
+						td.time = row[:created].strftime("%Y-%m-%d, %H:%M")
+
 				- @res.each do | row |
 					tr
 						td.title : a href='#{_url(@_path[:cms_route] + "/view/#{row[:ctid]}/#{row[:cpid]}/#{row[:title]}.html")}' = row[:title]

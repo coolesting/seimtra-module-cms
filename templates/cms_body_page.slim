@@ -5,7 +5,7 @@
 	- if @res
 		.nav
 			- types = _kv(:cms_type, :ctid, :name)
-			label : a href="#{_url(@_path[:cms_route] + '/list', :ctid => @res[:ctid])}" = types[@res[:ctid].to_i]
+			label : a href="#{_url(@_path[:cms_route], :ctid => @res[:ctid])}" = types[@res[:ctid].to_i]
 			label &nbsp; >>  #{@res[:title]}
 
 		.body
@@ -31,3 +31,4 @@
 						p : input.button type="submit" value="#{L[:submit]}"
 
 link rel='stylesheet' type='text/css' href='#{_assets("/cms/css/cms.css")}'
+

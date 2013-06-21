@@ -20,3 +20,9 @@ menu_name=cms
 type=admin
 link=/admin/cms_comment
 description=the comment of post
+
+name=post meta
+menu_name=cms
+type=admin
+link=/admin/cms_postmeta
+description=add the meta to post

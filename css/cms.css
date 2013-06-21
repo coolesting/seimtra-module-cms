@@ -26,6 +26,11 @@
 #cms .table .title {
 	width: 60%;
 }
+#cms .table .totop a {
+	font-weight: 900;
+	font-size: 20px;
+	color: #1E5575;
+}
 #cms .table .user {
 	text-align: center;
 	width: 10%;
@@ -75,8 +80,8 @@
 #cms .comment_form textarea {
 	border: 1px solid #ADBDC0;
 	margin: 2px;
-	width: 325px;
-	height: 50px; 
+	width: 380px;
+	height: 60px; 
 }
 
 

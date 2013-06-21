@@ -3,10 +3,12 @@
 		form action="#{_url2('/cms/edit')}" method="post"
 			p
 				input.button type="submit" value="#{L[:done]}"
-				a href="#{_url(@_path[:cms_route]) + '/list'}"
+				a href="#{_url(@_path[:cms_route])}"
 					input.button type="button" value="#{L[:return]}"
 
 			p : input.text type="text" name="title" placeholder="#{L[:title]}"
-			p : textarea cols='45' rows='10' name="body" placeholder="#{L[:body]}"
+			p : textarea.linyu_textarea cols='45' rows='10' name="body" placeholder="#{L[:body]}"
 
 link rel='stylesheet' type='text/css' href='#{_assets("/cms/css/cms.css")}'
+
+== _inc(:_editor)

@@ -5,3 +5,7 @@ tag=cms
 skey=post_form
 sval=page,post
 tag=cms
+
+skey=post_meta
+sval=news,top
+tag=cms

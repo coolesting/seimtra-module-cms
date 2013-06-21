@@ -1,27 +1,34 @@
 helpers do
 
-	def cms_get_list ctid = 1
+	#get posts by type
+	def cms_get_posts ctid = 1, tpl = :cms_table
 		@page_size = 20
+
+		#regular post
 		ds = DB[:cms_post].filter(:ctid => ctid.to_i).reverse(:cpid)
 		Sequel.extension :pagination
 		@res = ds.paginate(@page_curr, @page_size, ds.count)
 		@page_count = @res.page_count
-		_tpl :cms_list
+
+		#top post
+		cpids = DB[:cms_postmeta].filter(:mkey => '1', :mval => ctid).map(:cpid)
+		@top = DB[:cms_post].where(:cpid => cpids).all
+
+		_tpl tpl
 	end
 
-	def cms_get_post cpid = 1
+	#get post by cpid
+	def cms_get_post cpid = 1, tpl = :cms_body_post
 		@res = {}
-		tpl = "cms_body_page"
 		ds = DB[:cms_post].filter(:cpid => cpid.to_i)
 
 		unless ds.empty?
-			@title 	= ds.get(:title) + " - " + @title
-			@res 	= ds.first
-			@description = ds.get(:title)
-			tpls 	= _vars :post_form, :cms
-			tpl 	= "cms_body_#{tpls[@res[:form_id]]}"
+			@title 			= ds.get(:title) + " - " + @title
+			@res 			= ds.first
+			@description 	= ds.get(:title)
+			_parser_init :no_intra_emphasis => true
 		end
-		_tpl tpl.to_sym
+		_tpl tpl
 	end
 
 	def cms_get_comment cpid = 1
