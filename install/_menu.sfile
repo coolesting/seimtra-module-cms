@@ -25,4 +25,4 @@ name=post meta
 menu_name=cms
 type=admin
 link=/admin/cms_postmeta
-description=add the meta to post
+description=add the meta for post

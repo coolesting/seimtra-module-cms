@@ -8,3 +8,5 @@ last_changed=last_changed
 comment_count=comment_count
 reply=reply
 author=author
+admin model=admin model
+admin quit=admin quit

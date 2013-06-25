@@ -12,8 +12,7 @@ such as from '/cms/post' to '/my/path', that is it
 	end
 
 	get '/cms/post' do
-		ctid = @qs.include?(:ctid) ? @qs[:ctid] : 1
-		cms_get_posts ctid
+		cms_get_posts
 	end
 
 	get '/cms/post/view/:ctid/:cpid/:title' do

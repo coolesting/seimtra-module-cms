@@ -8,3 +8,5 @@ last_changed=最后更改
 comment_count=评论数
 reply=回复
 author=作者
+admin model=管理模式
+admin quit=退出管理

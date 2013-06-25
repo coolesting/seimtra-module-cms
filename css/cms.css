@@ -31,6 +31,9 @@
 	font-size: 20px;
 	color: #1E5575;
 }
+#cms .table .totop img {
+	margin-right: 3px;
+}
 #cms .table .user {
 	text-align: center;
 	width: 10%;

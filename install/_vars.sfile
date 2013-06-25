@@ -6,6 +6,6 @@ skey=post_form
 sval=page,post
 tag=cms
 
-skey=post_meta
-sval=news,top
+skey=post_settings
+sval=top,news,trash
 tag=cms

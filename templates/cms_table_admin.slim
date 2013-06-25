@@ -1,10 +1,15 @@
 #cms
 	.top_menu
 		a href="#{_url2(@_path[:cms_route] + '/edit')}"
-			input.button type="button" value="#{L[:create]}" 
-		- if _rule(:cms_post_admin)
-			a href="#{_url2(@_path[:cms_route], :tpl => 'cms_table_admin')}"
-				input.button type="button" value=" #{L[:'admin model']}" 
+			input.button type="button" value="#{L[:create]}"
+		a href="#{_url(@_path[:cms_route])}"
+			input.button type="button" value="#{L[:'admin quit']}"
+
+		- postmeta = _vars(:post_settings, :cms)
+		select.mr10 name="opt" form="editform"
+			- postmeta.each_index do | i |
+				option value="#{i}" #{L[postmeta[i].to_sym]}
+		input.button type="submit" value="#{L[:execute]}" form="editform"
 
 	.nav
 		- types = _kv(:cms_type, :ctid, :name)
@@ -12,7 +17,7 @@
 
 	.table
 		- if @res
-			table
+			form id="editform" method="post" action="#{_url('/cms/setpost')}" : table
 				tr
 					th = L[:title]
 					th = L[:author]
@@ -25,6 +30,7 @@
 						td.title.totop
 							img src="#{_public('/icons/top.png')}"
 							a href='#{_url(@_path[:cms_route] + "/view/#{row[:ctid]}/#{row[:cpid]}/#{row[:title]}.html")}' #{row[:title]}
+							input.right type="checkbox" name="cpid[]" value="#{row[:cpid]}"
 						td.user = user[row[:uid]]
 						td.user = user[row[:last_changed]]
 						td.comment_count = row[:comment_count]
@@ -32,7 +38,9 @@
 
 				- @res.each do | row |
 					tr
-						td.title : a href='#{_url(@_path[:cms_route] + "/view/#{row[:ctid]}/#{row[:cpid]}/#{row[:title]}.html")}' = row[:title]
+						td.title
+							a href='#{_url(@_path[:cms_route] + "/view/#{row[:ctid]}/#{row[:cpid]}/#{row[:title]}.html")}' = row[:title]
+							input.right type="checkbox" name="cpid[]" value="#{row[:cpid]}"
 						td.user = user[row[:uid]]
 						td.user = user[row[:last_changed]]
 						td.comment_count = row[:comment_count]

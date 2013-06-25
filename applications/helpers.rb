@@ -1,7 +1,11 @@
 helpers do
 
 	#get posts by type
-	def cms_get_posts ctid = 1, tpl = :cms_table
+	def cms_get_posts ctid = 0, tpl = :cms_table
+
+		if ctid == 0
+			ctid = @qs.include?(:ctid) ? @qs[:ctid] : 1
+		end
 		@page_size = 20
 
 		#regular post
@@ -14,6 +18,9 @@ helpers do
 		cpids = DB[:cms_postmeta].filter(:mkey => '1', :mval => ctid).map(:cpid)
 		@top = DB[:cms_post].where(:cpid => cpids).all
 
+		if tpl == :cms_table
+			tpl = @qs[:tpl].to_sym if @qs.include?(:tpl)
+		end
 		_tpl tpl
 	end
 
@@ -45,4 +52,45 @@ helpers do
 		_tpl :cms_edit
 	end
 
+	#set the post as news
+	def cms_setpost_news cpid
+		postmeta = _vars :post_settings, :cms
+		ds 	= DB[:cms_postmeta].filter(:cpid => cpid, :mkey => postmeta.index('news'))
+		ctid = DB[:cms_post].filter(:cpid => cpid).get(:ctid)
+
+		if ds.empty?
+			DB[:cms_postmeta].insert(
+				:cpid => cpid, 
+				:mkey => postmeta.index('news'),
+				:mval => ctid,
+				:created => Time.now
+			)
+		else
+			ds.delete
+		end
+	end
+
+	#set the post to top of table
+	def cms_setpost_top cpid
+		postmeta = _vars :post_settings, :cms
+		ds 	= DB[:cms_postmeta].filter(:cpid => cpid, :mkey => postmeta.index('top'))
+		ctid = DB[:cms_post].filter(:cpid => cpid).get(:ctid)
+
+		if ds.empty?
+			DB[:cms_postmeta].insert(
+				:cpid => cpid, 
+				:mkey => postmeta.index('top'),
+				:mval => ctid,
+				:created => Time.now
+			)
+		else
+			ds.delete
+		end
+	end
+
+	#move the post to trash type
+	def cms_setpost_trash cpid
+		DB[:cms_post].filter(:cpid => cpid).update(:ctid => 2)
+	end
+	
 end
