@@ -2,7 +2,7 @@
 	.top_menu
 		a href="#{_url2(@_path[:cms_route] + '/edit')}"
 			input.button type="button" value="#{L[:create]}" 
-		- if _rule(:cms_post_admin)
+		- if _rule?(:cms_post_admin)
 			a href="#{_url2(@_path[:cms_route], :tpl => 'cms_table_admin')}"
 				input.button type="button" value=" #{L[:'admin model']}" 
 
